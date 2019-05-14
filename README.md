@@ -125,6 +125,10 @@ services:
 9. Run sensor emulators
 mosquitto_pub -t sensors -m '{"name": "sensor1"}'
 
+10. Move to Kubernetes deployment
+
+Generate initial k8s files using kompose (https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)
+
 NOTES
 
 1. mosquitto_pub -t sensors -m "{'name': 'sensor1'}" (i.e. single and double quotes swapped) seems to fail on JSON loads - testing req.Apparently, this is a restriction of the JSON format.
