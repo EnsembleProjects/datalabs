@@ -1,0 +1,24 @@
+version: '3'
+services:
+  jupyter-notebook:
+    image: "jupyter_notebook"
+    ports:
+      - "8888:8888"
+  sensor_app:
+    image: "sensor_app"
+    depends_on:
+        - "mosquitto"
+        - "mongo_container"
+  mongo_container:
+    image: "mongo"
+    ports:
+        - "27017:27017"
+  postgres_db:
+    environment: 
+      - POSTGRES_PASSWORD=postgres
+    image: "postgres"
+  mosquitto:
+    image: "eclipse-mosquitto"
+    ports:
+        - "1883:1883"
+
