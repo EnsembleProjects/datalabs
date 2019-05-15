@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mosquitto-deploy
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: mosquitto 
+    minReadySeconds: 10
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: mosquitto 
+        spec:
+            containers:
+                - name: mosquitto 
+                  image: eclipse-mosquitto:latest 
+                  ports:
+                      - containerPort: 1883
+                      - containerPort: 9001
+

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: jupyter-notebook-deploy
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: jupyter-notebook
+    minReadySeconds: 10
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: jupyter-notebook
+        spec:
+            containers:
+                - name: jupyter-notebook
+                  image: graham/jupyter-notebook:1.0
+                  ports:
+                      - containerPort: 8888
+

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mongodb-deploy
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: mongodb 
+    minReadySeconds: 10
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: mongodb 
+        spec:
+            containers:
+                - name: mongodb 
+                  image: mongo:latest 
+                  ports:
+                      - containerPort: 27017
+

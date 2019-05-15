@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: mosquitto-service
+    labels:
+        app: mosquitto 
+spec:
+    type: NodePort
+    ports:
+        - port: 1883
+          nodePort: 30021
+          protocol: TCP
+    selector:
+        app: mosquitto
+
