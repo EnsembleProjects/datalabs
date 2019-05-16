@@ -1,4 +1,4 @@
-### Developing a Cloud-Native Wireless Soil Sensor DataLab
+### Developing a *Cloud-Native* Wireless Soil Sensor DataLab
 
 #### What is a cloud-native application?
 
@@ -10,6 +10,12 @@ The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) define cloud
 
 *The Cloud Native Computing Foundation seeks to drive adoption of this paradigm by fostering and sustaining an ecosystem of open source, vendor-neutral projects. We democratize state-of-the-art patterns to make these innovations accessible for everyone.*
 
+[Red Hat](https://www.redhat.com/en/resources/cloud-native-container-design-whitepaper) describes cloud native as:
+
+*“Cloud native” is a term used to describe applications designed specifically to run on a cloud-based infrastructure. Typically, cloud-native applications are developed as loosely coupled microservices running in containers managed by platforms. These applications anticipate failure, and they run and scale reliably even when their underlying infrastructure is experiencing outages. To offer such capabilities, cloud-native platforms impose a set of contracts and constraints on the applications running on them. These contracts ensure that the applications conform to certain constraints and allow the platforms to automate the management of the containerized applications.*
+
+A cloud-native application is an application that is structured, developed and deployed in such a way that it embodies these charactersitcs using appropriate technologies and development practices.
+
 
 #### What is a DataLab?
 
@@ -17,9 +23,9 @@ A DataLab brings together data, analytical techniques and computational resource
 cover a wide range of possibilities, e.g. exploratory investigations of datasets, learning about innovative statistical techniques, developing an 
 understanding of particular application areas, or integrating different modelling approaches.
 
-The basic premise here is to start with the idea of a (very) simple sensor DataLab built as a containerised application and then developed for production as a cloud-native application.
+The basic premise here is to start with the idea of a (very) simple Soil Sensor DataLab built as a containerised application and then developed for production as a cloud-native application.
 
-It is hoped that as well as documenting the steps taken I will also reflect on the pros and cons of various decisions en-route.
+It is hoped that as well as documenting the steps taken I can also reflect on the pros and cons of various decisions en-route.
 
 #### A Wireless Sensor DataLab
 
@@ -27,13 +33,14 @@ A Wireless Sensor DataLab has been chosen because it raises some interesting arc
 data and because of the physical topology with limited resources. It is perhaps also interesting because it gives us an opportunity to think about what
 a DataLab would look like that brought real-time streaming data together with historical data.
 
-So, what is the purpose of this Wireless Sensor Datalab? I think just to explore the characteristics of the streaming sensor data using a variety of
+So, what is the purpose of this Wireless Soil Sensor Datalab? I think just to explore the characteristics of the streaming sensor data using a variety of
 techniques. As it develops, this will become more precise over time. 
 
-However, let's not forget that the main objective of this work is to document (and reflect upon) the approach used to move from a traditional software
-architecture to a cloud-native architecture.
+However, a real objective of this work is to document (and reflect upon) the approach used to move from a traditional software architecture to a cloud-native architecture.
 
 #### Main Architectural Components of a (Container-Based) Wireless Sensor DataLab
+
+A container-based application
 
 ![](https://github.com/digsci/datalabs/blob/master/architecture-small.png)
 
