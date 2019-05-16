@@ -49,7 +49,7 @@ architecture to a cloud-native architecture.
 `docker pull mongo`
 `docker run --name mongo_db --network=bridge_network -p 27017:27017 -d mongo:latest`
 
-6. ** Processed Data Database:** Populated with processed data. The database chosen here is the relational database PostgreSQL. Image pulled directly from [https://hub.docker.com/_/postgres]().<br>
+6. **Processed Data Database:** Populated with processed data. The database chosen here is the relational database PostgreSQL. Image pulled directly from [https://hub.docker.com/_/postgres]().<br>
 `docker pull postgres`
 `docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`
 
