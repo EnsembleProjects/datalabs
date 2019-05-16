@@ -2,7 +2,13 @@
 
 #### What is a cloud-native application?
 
-[Various definitions - extract key characteristics]
+The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) define cloud native as:
+
+*Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.*
+
+*These techniques enable loosely coupled systems that are resilient, manageable, and observable. Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.*
+
+*The Cloud Native Computing Foundation seeks to drive adoption of this paradigm by fostering and sustaining an ecosystem of open source, vendor-neutral projects. We democratize state-of-the-art patterns to make these innovations accessible for everyone.*
 
 
 #### What is a DataLab?
