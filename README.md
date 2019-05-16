@@ -1,4 +1,4 @@
-### Developing a Cloud-Native Wireless Sensor DataLab
+### Developing a Cloud-Native Wireless Soil Sensor DataLab
 
 #### What is a cloud-native application?
 
