@@ -1,17 +1,17 @@
 version: '3'
 services:
   jupyter-notebook:
-    build: ./jupyter_notebook_image
-    image: "jupyter_notebook"
+    build: ./jupyter_notebook
+    image: "graham/jupyter_notebook:1.0"
     ports:
       - "8888:8888"
-  sensor_app:
-    build: ./sensor_app_image/
-    image: "sensor_app"
+  data_routing:
+    build: ./data_routing/
+    image: "graham/data_routing:1.0"
     depends_on:
         - "mosquitto"
-        - "mongo_container"
-  mongo_container:
+        - "mongo_db"
+  mongo_db:
     image: "mongo"
     ports:
         - "27017:27017"

@@ -12,22 +12,19 @@ def on_message(client, userdata, message):
     data = json.loads(str(message.payload.decode("utf-8")))
     data['timestamp'] = datetime.datetime.utcnow()
     try:
-        mongo_client = MongoClient('mongodb-service',27017)
+        mongo_client = MongoClient('mongo_db',27017)
         db = mongo_client.sensor
         sensors = db.sensors
         sensors.insert_one(data)
     except:
-        print("Couldn't connect to mongo...", file=sys.stderr)
+        print("Couldn't connect to mongo_db", file=sys.stderr)
 
-print("Sensor_App service...")
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 try:
-    print("Connecting to mosquitto...", file=sys.stderr)
-    client.connect("mosquitto-service", 1883)
-    print("Connected to mosquitto...", file=sys.stderr)
+    client.connect("mosquitto", 1883)
     client.loop_forever()
 except:
-    print("Couldn't connect to mosquitto...", file=sys.stderr)
+    print("Couldn't connect to mosquitto", file=sys.stderr)
 
