@@ -53,50 +53,24 @@ architecture to a cloud-native architecture.
 `docker pull postgres`
 `docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`
 
-7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections.<br><br>
-Dockerfile:
-
+7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections and a simple Jupyter notebook to test database connections. Initial image pulled directly from [https://hub.docker.com/r/jupyter/scipy-notebook]().<br><br>
+`Dockerfile:`<br>
 `FROM jupyter/scipy-notebook:latest`<br>
 `ADD db.ipynb /home/jovyan`<br>
-`RUN conda install -y pymongo psycopg2`
-
+`RUN conda install -y pymongo psycopg2`<br>
+<br>
 `docker build -t jupyter_notebook .`
 `docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook` 
 
-8. Create Docker Compose file
+8. **DataLab Composition:** The DataLab application is composed from these services and uses `docker-compose` to do this composition. The docker-compose file describing the compostion is [docker-compose.yml](https://github.com/digsci/datalabs/blob/master/docker-compose.yml)<br>
 
-docker-compose.yml
-
-version: '3'
-services:
-  jupyter-notebook:
-    image: "jupyter_notebook"
-    ports:
-      - "8888:8888"
-  sensor_app:
-    image: "sensor_app"
-    depends_on:
-        - "mosquitto"
-        - "mongo_container"
-  mongo_container:
-    image: "mongo"
-    ports:
-        - "27017:27017"
-  postgres_db:
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    image: "postgres"
-  mosquitto:
-    image: "eclipse-mosquitto"
-    ports:
-        - "1883:1883"
 
 9. Run sensor emulators
 mosquitto_pub -t sensors -m '{"name": "sensor1"}'
 
 10. Move to Kubernetes deployment
 
-Generate initial k8s files using kompose (https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)
+[...]
 
 NOTES
 
