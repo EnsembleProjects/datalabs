@@ -2,7 +2,7 @@
 
 #### What is a cloud-native application?
 
-[Various definitiond - extract key characteristics]
+[Various definitions - extract key characteristics]
 
 
 #### What is a DataLab?
