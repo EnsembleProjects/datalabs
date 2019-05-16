@@ -94,7 +94,8 @@ To close the system gracefully use:
 `docker-compose down`
 
 #### Cloud-Native Development for Production 
-[...]
+
+Created inital kubernetes deployment and service files.
 
 
 		
