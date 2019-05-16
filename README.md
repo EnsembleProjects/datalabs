@@ -58,7 +58,7 @@ architecture to a cloud-native architecture.
 `FROM jupyter/scipy-notebook:latest`  
 `ADD db.ipynb /home/jovyan`  
 `RUN conda install -y pymongo psycopg2`  
-``  
+` `  
 `docker build -t jupyter_notebook .`    
 `docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook`     
 
