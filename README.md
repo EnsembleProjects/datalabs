@@ -82,6 +82,17 @@ A container-based application
 For example:  
 `mosquitto_pub -t sensors -m '{"name": "sensor1", "value": 5.1}'`
 
+If you want to run the container-based system, ensure you have docker installed and then:
+
+`git clone https://github.com/digsci/datalabs.git`  
+`cd datalabs/container-based`  
+`docker-compose up`
+
+The Jupyter Notebook can be found at `localhost:8888`
+
+To close the system gracefully use:  
+`docker-compose down`
+
 #### Cloud-Native Development for Production 
 [...]
 
