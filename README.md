@@ -11,8 +11,7 @@ A DataLab brings together data, analytical techniques and computational resource
 cover a wide range of possibilities, e.g. exploratory investigations of datasets, learning about innovative statistical techniques, developing an 
 understanding of particular application areas, or integrating different modelling approaches.
 
-The basic premise here is to start with the idea of a (very) simple sensor DataLab built using a traditional client-server model, 
-then develop this through stages into a containerised application and finally a cloud-native application.
+The basic premise here is to start with the idea of a (very) simple sensor DataLab built as a containerised application and then developed for production as a cloud-native application.
 
 It is hoped that as well as documenting the steps taken I will also reflect on the pros and cons of various decisions en-route.
 
@@ -28,7 +27,7 @@ techniques. As it develops, this will become more precise over time.
 However, let's not forget that the main objective of this work is to document (and reflect upon) the approach used to move from a traditional software
 architecture to a cloud-native architecture.
 
-#### Main Architectural Components of a Wireless Sensor DataLab
+#### Main Architectural Components of a (Container-Based) Wireless Sensor DataLab
 
 
 
@@ -70,7 +69,7 @@ architecture to a cloud-native architecture.
 For example:  
 `mosquitto_pub -t sensors -m '{"name": "sensor1", "value": 5.1}'`
 
-10. **Production Deployment**  
+10. **Cloud-Native Development**  
 [...]
 
 
