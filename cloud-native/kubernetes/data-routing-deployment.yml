@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: sensor-app-deploy
+    name: data-routing-deploy
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: sensor-app 
+            app: data-routing-app 
     minReadySeconds: 10
     strategy:
         type: RollingUpdate
@@ -16,9 +16,9 @@ spec:
     template:
         metadata:
             labels:
-                app: sensor-app 
+                app: data-routing-app
         spec:
             containers:
-                - name: sensor-app 
-                  image: graham/sensor-app:1.0 
+                - name: data-routing-app 
+                  image: graham/data_routing:1.0 
 

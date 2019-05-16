@@ -20,7 +20,7 @@ spec:
         spec:
             containers:
                 - name: jupyter-notebook
-                  image: graham/jupyter-notebook:1.0
+                  image: graham/jupyter_notebook:1.0
                   ports:
                       - containerPort: 8888
 

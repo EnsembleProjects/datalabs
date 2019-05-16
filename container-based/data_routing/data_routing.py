@@ -12,12 +12,12 @@ def on_message(client, userdata, message):
     data = json.loads(str(message.payload.decode("utf-8")))
     data['timestamp'] = datetime.datetime.utcnow()
     try:
-        mongo_client = MongoClient('mongo_db',27017)
+        mongo_client = MongoClient('mongo-db',27017)
         db = mongo_client.sensor
         sensors = db.sensors
         sensors.insert_one(data)
     except:
-        print("Couldn't connect to mongo_db", file=sys.stderr)
+        print("Couldn't connect to mongo-db", file=sys.stderr)
 
 client = mqtt.Client()
 client.on_connect = on_connect
