@@ -29,7 +29,7 @@ architecture to a cloud-native architecture.
 
 #### Main Architectural Components of a (Container-Based) Wireless Sensor DataLab
 
-
+![](jupyter_notebook_image/architecture.png)
 
 1. **Virtual Network:** Used for container networking and for simple dns lookup.<br>
 `docker network create -d bridge bridge_network`
