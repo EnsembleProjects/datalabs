@@ -38,11 +38,11 @@ architecture to a cloud-native architecture.
 2. **Sensor Emulators:** Python scripts publishing to a MQTT message broker.
 
 3. **MQTT Message Broker container:** Used for publish/subscribe to message topics. Image pulled directly from [https://hub.docker.com/_/eclipse-mosquitto]().<br>
-`docker pull eclipse-mosquitto`
-`docker run -it --name mosquitto --network=bridge_network -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
+`docker pull eclipse-mosquitto`  
+`docker run -it --name mosquitto --network=bridge_network -p 1883:1883 -p 9001:9001 eclipse-mosquitto`  
 
 4. **Sensor application:** Subscribes to message broker and sends received sensor data to a streaming data database. This would be a convient place for quality control and addition of meta-data if required.<br> 
-`docker build -t sensor_app .`
+`docker build -t sensor_app .`  
 `docker run --network=bridge_network sensor_app`
 
 5. **Streamed Data Database:** Populated with sensor data as it arrives on the MQTT message bus. The database chosen here is the document-based database MongoDB. Image pulled directly from [https://hub.docker.com/_/mongo]().<br> 
