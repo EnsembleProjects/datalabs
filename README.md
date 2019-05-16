@@ -54,13 +54,13 @@ architecture to a cloud-native architecture.
 `docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`
 
 7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections and a simple Jupyter notebook to test database connections. Initial image pulled directly from [https://hub.docker.com/r/jupyter/scipy-notebook]().<br><br>
-`Dockerfile:`<br>
-`FROM jupyter/scipy-notebook:latest`<br>
-`ADD db.ipynb /home/jovyan`<br>
-`RUN conda install -y pymongo psycopg2`<br>
-<br>
-`docker build -t jupyter_notebook .`
-`docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook` 
+`Dockerfile:`  
+`FROM jupyter/scipy-notebook:latest`  
+`ADD db.ipynb /home/jovyan`  
+`RUN conda install -y pymongo psycopg2`  
+  
+`docker build -t jupyter_notebook .`  
+`docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook`   
 
 8. **DataLab Composition:** The DataLab application is composed from these services and uses `docker-compose` to do this composition. The docker-compose file describing the compostion is [docker-compose.yml](https://github.com/digsci/datalabs/blob/master/docker-compose.yml)<br>
 
