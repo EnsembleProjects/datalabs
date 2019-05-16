@@ -1,6 +1,11 @@
-Developing a Cloud-Native Wireless Sensor DataLab
+### Developing a Cloud-Native Wireless Sensor DataLab
 
-What is a cloud-native application? ...
+#### What is a cloud-native application?
+
+[Various definitiond - extract key characteristics]
+
+
+#### What is a DataLab?
 
 A DataLab brings together data, analytical techniques and computational resources for a specific purpose. This purpose could potentially
 cover a wide range of possibilities, e.g. exploratory investigations of datasets, learning about innovative statistical techniques, developing an 
@@ -11,6 +16,7 @@ then develop this through stages into a containerised application and finally a 
 
 It is hoped that as well as documenting the steps taken I will also reflect on the pros and cons of various decisions en-route.
 
+#### A Wireless Sensor DataLab
 
 A Wireless Sensor DataLab has been chosen because it raises some interesting architectural questions for the system due to the streaming nature of the 
 data and because of the physical topology with limited resources. It is perhaps also interesting because it gives us an opportunity to think about what
@@ -22,77 +28,40 @@ techniques. As it develops, this will become more precise over time.
 However, let's not forget that the main objective of this work is to document (and reflect upon) the approach used to move from a traditional software
 architecture to a cloud-native architecture.
 
+#### Main Architectural Components of a Wireless Sensor DataLab
 
 
-Main components:
 
+1. **Virtual Network:** Used for container networking and for simple dns lookup.<br>
+`docker network create -d bridge bridge_network`
 
-1. Virtual Network for containers to network on and use dns lookup for other containers:
-docker network create -d bridge bridge_network
+2. **Sensor Emulators:** Python scripts publishing to a MQTT message broker.
 
-2. Sensor emulators:
-Python scripts publishing to a MQTT message broker
+3. **MQTT Message Broker container:** Used for publish/subscribe to message topics. Image pulled directly from [https://hub.docker.com/_/eclipse-mosquitto]().<br>
+`docker pull eclipse-mosquitto`
+`docker run -it --name mosquitto --network=bridge_network -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
 
-3. MQTT Message Broker container:
-docker pull eclipse-mosquitto
-docker run -it --name mosquitto --network=bridge_network -p 1883:1883 -p 9001:9001 eclipse-mosquitto
+4. **Sensor application:** Subscribes to message broker and sends received sensor data to a streaming data database. This would be a convient place for quality control and addition of meta-data if required.<br> 
+`docker build -t sensor_app .`
+`docker run --network=bridge_network sensor_app`
 
-4. Sensor application container (subscribes to message broker and sends received messages to a database container)
+5. **Streamed Data Database:** Populated with sensor data as it arrives on the MQTT message bus. The database chosen here is the document-based database MongoDB. Image pulled directly from [https://hub.docker.com/_/mongo]().<br> 
+`docker pull mongo`
+`docker run --name mongo_db --network=bridge_network -p 27017:27017 -d mongo:latest`
 
-sensor_app.py:
+6. ** Processed Data Database:** Populated with processed data. The database chosen here is the relational database PostgreSQL. Image pulled directly from [https://hub.docker.com/_/postgres]().<br>
+`docker pull postgres`
+`docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`
 
-from pymongo import MongoClient
-import json
-import datetime
-
-mongo_client = MongoClient('mongo_container',27017)
-db = mongo_client.sensor
-sensors = db.sensors
-
-def on_connect(client, userdata, flags, rc):
-    client.subscribe("sensors")
-
-def on_message(client, userdata, message):
-        data = json.loads(str(message.payload.decode("utf-8")))
-        data['timestamp'] = datetime.datetime.utcnow()
-        sensors.insert_one(data)
-        
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
-client.connect("mosquitto")
-client.loop_forever()
-
+7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections.<br><br>
 Dockerfile:
 
-FROM python:latest
-ADD sensor_app.py /
-RUN pip install pymongo paho-mqtt
-CMD [ "python", "./sensor_app.py" ]
+`FROM jupyter/scipy-notebook:latest`<br>
+`ADD db.ipynb /home/jovyan`<br>
+`RUN conda install -y pymongo psycopg2`
 
-docker build -t sensor_app .
-docker run --network=bridge_network sensor_app
-
-5. MongoDB container
-
-docker pull mongo
-docker run --name mongo_container --network=bridge_network -p 27017:27017 -d mongo:latest
-
-6. PostgreSQL container
-
-docker pull postgres
-docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
-
-7. Jupyter Notebook container
-
-Dockerfile:
-
-FROM jupyter/scipy-notebook:latest
-ADD db.ipynb /home/jovyan
-RUN conda install -y pymongo psycopg2 
-
-docker build -t jupyter_notebook .
-docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook 
+`docker build -t jupyter_notebook .`
+`docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook` 
 
 8. Create Docker Compose file
 
