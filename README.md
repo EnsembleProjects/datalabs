@@ -46,14 +46,14 @@ architecture to a cloud-native architecture.
 `docker run --network=bridge_network sensor_app`
 
 5. **Streamed Data Database:** Populated with sensor data as it arrives on the MQTT message bus. The database chosen here is the document-based database MongoDB. Image pulled directly from [https://hub.docker.com/_/mongo]().<br> 
-`docker pull mongo`
-`docker run --name mongo_db --network=bridge_network -p 27017:27017 -d mongo:latest`
+`docker pull mongo`  
+`docker run --name mongo_db --network=bridge_network -p 27017:27017 -d mongo:latest`  
 
 6. **Processed Data Database:** Populated with processed data. The database chosen here is the relational database PostgreSQL. Image pulled directly from [https://hub.docker.com/_/postgres]().<br>
-`docker pull postgres`
-`docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`
+`docker pull postgres`  
+`docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`  
 
-7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections and a simple Jupyter notebook to test database connections. Initial image pulled directly from [https://hub.docker.com/r/jupyter/scipy-notebook]().<br><br>
+7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections and a simple Jupyter notebook to test database connections. Initial image pulled directly from [https://hub.docker.com/r/jupyter/scipy-notebook]().<br>
 `Dockerfile:`  
 `FROM jupyter/scipy-notebook:latest`  
 `ADD db.ipynb /home/jovyan`  
