@@ -58,9 +58,9 @@ architecture to a cloud-native architecture.
 `FROM jupyter/scipy-notebook:latest`  
 `ADD db.ipynb /home/jovyan`  
 `RUN conda install -y pymongo psycopg2`  
-  
-`docker build -t jupyter_notebook .`  
-`docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook`   
+    
+`docker build -t jupyter_notebook .`    
+`docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook`     
 
 8. **DataLab Composition:** The DataLab application is composed from these services and uses `docker-compose` to do this composition. The docker-compose file describing the compostion is [docker-compose.yml](https://github.com/digsci/datalabs/blob/master/docker-compose.yml)<br>
 
