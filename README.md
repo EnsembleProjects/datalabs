@@ -14,7 +14,7 @@ The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) define cloud
 
 *“Cloud native” is a term used to describe applications designed specifically to run on a cloud-based infrastructure. Typically, cloud-native applications are developed as loosely coupled microservices running in containers managed by platforms. These applications anticipate failure, and they run and scale reliably even when their underlying infrastructure is experiencing outages. To offer such capabilities, cloud-native platforms impose a set of contracts and constraints on the applications running on them. These contracts ensure that the applications conform to certain constraints and allow the platforms to automate the management of the containerized applications.*
 
-A cloud-native application is an application that is structured, developed and deployed in such a way that it embodies these charactersitcs using appropriate technologies and development practices.
+A cloud-native application is an application that is structured, developed and deployed in such a way that it embodies these charactersitcs using appropriate technologies and practices.
 
 
 #### What is a DataLab?
@@ -38,7 +38,7 @@ techniques. As it develops, this will become more precise over time.
 
 However, a real objective of this work is to document (and reflect upon) the approach used to move from a traditional software architecture to a cloud-native architecture.
 
-#### Main Architectural Components of a (Container-Based) Wireless Sensor DataLab
+#### Microservice Architecture of a (Container-Based) Wireless Sensor DataLab
 
 A container-based application
 
@@ -74,8 +74,8 @@ A container-based application
 `docker build -t jupyter_notebook .`    
 `docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook`     
 
-8. **DataLab Composition:** The DataLab application is composed from these services and uses `docker-compose` to do this composition. The docker-compose file describing the compostion is [docker-compose.yml](container-based/docker-compose.yml)  
-`docker-compose up`  
+8. **DataLab Composition:** The DataLab application is composed from these services and uses `docker-compose` to do this composition. The docker-compose file describing the service compostion is [docker-compose.yml](container-based/docker-compose.yml). This approach means all the previous commands for image builds and running of containers can be replaced by:  
+`docker-compose up`.  
 
 
 9. **Sensor Emulation:**  
@@ -93,9 +93,16 @@ The Jupyter Notebook can be found at `localhost:8888`
 To close the system gracefully use:  
 `docker-compose down`
 
-#### Cloud-Native Development for Production 
+#### Cloud-Native Approach 
 
-Created inital kubernetes deployment and service files.
+The container-based application already has some benefits arising from its loosely-coupled microservices architecture (.e.g. ability to have polyglot development approaches, updating of individual services) but it doesn't in itself provide a resilient and scalable application.
+
+We can use a *cloud-native platform* to begin the  process of building an application with resilient and scalable features. The [Kubernetes (K8s)](https://kubernetes.io) platform is described as *"... an open-source system for automating deployment, scaling, and management of containerized applications"*. 
+
+Using the K8s system, we can take a declarative approach describing what we would like our system to look like using configuration files that we submit to K8s. There are many different component types in K8s, but initially only two are used:
+  
+1. **Deployment:**  
+2. **Service:**
 
 
 		
