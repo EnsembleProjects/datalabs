@@ -49,29 +49,44 @@ However, a real objective of this work is to document (and reflect upon) the app
 2. **Sensor Emulators:** Python scripts publishing to a MQTT message broker.
 
 3. **MQTT Message Broker container:** Used for publish/subscribe to message topics. Image pulled directly from [https://hub.docker.com/_/eclipse-mosquitto]().  
-`docker pull eclipse-mosquitto`  
-`docker run -it --name mosquitto --network=bridge_network -p 1883:1883 -p 9001:9001 eclipse-mosquitto`  
+
+~~~~
+docker pull eclipse-mosquitto 
+docker run -it --name mosquitto --network=bridge_network -p 1883:1883 -p 9001:9001 eclipse-mosquitto
+~~~~ 
 
 4. **Sensor application:** Subscribes to message broker and sends received sensor data to a streaming data database. This would be a convient place for quality control and addition of meta-data if required.   
-`docker build -t sensor_app .`  
-`docker run --network=bridge_network sensor_app`
+
+~~~~
+docker build -t sensor_app . 
+docker run --network=bridge_network sensor_app
+~~~~
 
 5. **Streamed Data Database:** Populated with sensor data as it arrives on the MQTT message bus. The database chosen here is the document-based database MongoDB. Image pulled directly from [https://hub.docker.com/_/mongo]().   
-`docker pull mongo`  
-`docker run --name mongo_db --network=bridge_network -p 27017:27017 -d mongo:latest`  
+
+~~~~
+docker pull mongo  
+docker run --name mongo_db --network=bridge_network -p 27017:27017 -d mongo:latest
+~~~~  
 
 6. **Processed Data Database:** Populated with processed data. The database chosen here is the relational database PostgreSQL. Image pulled directly from [https://hub.docker.com/_/postgres]().  
-`docker pull postgres`  
-`docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres`  
+
+~~~~
+docker pull postgres  
+docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+~~~~  
 
 7. **Jupyter Notebook:** The application front-end is based upon the SciPy container published by Jupyter with the addtion of python libraries for the database connections and a simple Jupyter notebook to test database connections. Initial image pulled directly from [https://hub.docker.com/r/jupyter/scipy-notebook]().  
-`Dockerfile:`  
-`FROM jupyter/scipy-notebook:latest`  
-`ADD db.ipynb /home/jovyan`  
-`RUN conda install -y pymongo psycopg2`  
-` `  
-`docker build -t jupyter_notebook .`    
-`docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook`     
+
+~~~~
+Dockerfile: 
+FROM jupyter/scipy-notebook:latest 
+ADD db.ipynb /home/jovyan
+RUN conda install -y pymongo psycopg2 
+  
+docker build -t jupyter_notebook .    
+docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook
+~~~~    
 
 8. **DataLab Composition:** The DataLab application is composed from these services and uses `docker-compose` to do this composition. The docker-compose file describing the service compostion is [docker-compose.yml](container-based/docker-compose.yml). This approach means all the previous commands for image builds and running of containers can be replaced by:  
 `docker-compose up`.  
