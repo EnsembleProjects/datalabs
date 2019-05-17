@@ -102,12 +102,60 @@ A production-ready k8s cluster would be created using any of the various vendor'
 
 Using the K8s system, we can take a declarative approach describing what we would like our system to look like using configuration files that we submit to K8s. There are many different component types in k8s, but initially only *deployment* and *service* are used:
   
-1. **[Deployment](https://www.docker.com/products/docker-desktop):**  
-2. **[Service:](https://kubernetes.io/docs/concepts/services-networking/service/)**
+1. **[Deployment](https://www.docker.com/products/docker-desktop):** Describe desired state for an application (e.g. number of replicated service containers) and update strategies.  
+2. **[Service:](https://kubernetes.io/docs/concepts/services-networking/service/)** Provide stable, resilient networking and ip addresses for service containers.  
 
+Example Jupyter Notebook deployment file:  
+  
+~~~~
+apiVersion: apps/v1 
+kind: Deployment  
+metadata: 
+    name: jupyter-notebook-deploy  
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: jupyter-notebook
+    minReadySeconds: 10
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: jupyter-notebook
+        spec:
+            containers:
+                - name: jupyter-notebook
+                  image: graham/jupyter_notebook:1.0
+                  ports:
+                      - containerPort: 8888
+~~~~
 
+Example Jupyter Notebook service file:  
+
+~~~~
+apiVersion: v1
+kind: Service
+metadata:
+    name: jupyter-notebook
+    labels:
+        app: jupyer-notebook
+spec:
+    type: NodePort
+    ports:
+        - port: 8888
+          nodePort: 30001
+          protocol: TCP
+    selector:
+        app: jupyter-notebook
+~~~~  
 To deploy the initial cloud-native application:  
 `kubectl apply -f ./cloud-native/kubernetes`
-		
+
+
 
 
