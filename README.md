@@ -99,12 +99,16 @@ The container-based application already has some benefits arising from its loose
 
 We can use a *cloud-native platform* to begin the  process of building an application with resilient and scalable features. The [Kubernetes (K8s)](https://kubernetes.io) platform is described as *"... an open-source system for automating deployment, scaling, and management of containerized applications"*. 
 
-Using the K8s system, we can take a declarative approach describing what we would like our system to look like using configuration files that we submit to K8s. There are many different component types in K8s, but initially only two are used:
+A production-ready k8s cluster would be created using any of the various vendor's offerings or directly on-premise, but here we are using just a local machine at the moment. A local k8s cluster can be created using tools such as [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) or [Docker Desktop](https://www.docker.com/products/docker-desktop).  
+
+Using the K8s system, we can take a declarative approach describing what we would like our system to look like using configuration files that we submit to K8s. There are many different component types in k8s, but initially only *deployment* and *service* are used:
   
-1. **Deployment:**  
-2. **Service:**
+1. **[Deployment](https://www.docker.com/products/docker-desktop):**  
+2. **[Service:](https://kubernetes.io/docs/concepts/services-networking/service/)**
 
 
+To deploy the initial cloud-native application:  
+`kubectl apply -f ./cloud-native/kubernetes`
 		
 
 
