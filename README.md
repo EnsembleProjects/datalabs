@@ -81,12 +81,17 @@ However, a real objective of this work is to document (and reflect upon) the app
 For example:  
 `mosquitto_pub -t sensors -m '{"name": "sensor1", "value": 5.1}'`
 
-If you want to run the container-based system, ensure you have docker installed and then:
+If you want to run the container-based system, ensure you have docker installed and then:  
 
-`git clone https://github.com/digsci/datalabs.git`  
-`cd datalabs/container-based`  
-`docker-compose up`
-
+~~~~
+git clone https://github.com/digsci/datalabs.git 
+cd datalabs/container-based/data_routing  
+docker build -t graham/data_routing:1.0 .
+cd datalabs/container-based/jupter_notebook
+docker build -t graham/jupyter_notebook:1.0 .
+cd datalabs/container-based
+docker-compose up
+~~~~  
 The Jupyter Notebook can be found at `localhost:8888`
 
 To close the system gracefully use:  
