@@ -40,7 +40,6 @@ However, a real objective of this work is to document (and reflect upon) the app
 
 #### Microservice Architecture of a (Container-Based) Wireless Sensor DataLab
 
-A container-based application
 
 ![](https://github.com/digsci/datalabs/blob/master/architecture-small.png)
 
