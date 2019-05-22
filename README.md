@@ -16,7 +16,6 @@ The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) define cloud
 
 A cloud-native application is an application that is structured, developed and deployed in such a way that it embodies these characteristics using appropriate technologies and practices.
 
-#### A cloud-native technology stack
 
 ![](https://github.com/digsci/datalabs/blob/master/stack.png)
 
