@@ -18,7 +18,7 @@ A cloud-native application is an application that is structured, developed and d
 
 
 <p align="center">
-  <img src="https://github.com/digsci/datalabs/blob/master/stack.png" width="200" height="100>
+  <img src="https://github.com/digsci/datalabs/blob/master/stack.png" width="400" height="629">
 </p>
 
 
