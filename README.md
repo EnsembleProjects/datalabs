@@ -46,7 +46,9 @@ However, a real objective of this work is to document (and reflect upon) the app
 #### Microservice Architecture of a (Container-Based) Wireless Sensor DataLab
 
 
-![](https://github.com/digsci/datalabs/blob/master/architecture-small.png)
+<p align="center">
+  <img src="https://github.com/digsci/datalabs/blob/master/architecture.png" width="400" height="629">
+</p>
 
 1. **Virtual Network:** Used for container networking and for simple dns lookup.<br>
 `docker network create -d bridge bridge_network`
