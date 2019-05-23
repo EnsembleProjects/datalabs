@@ -47,7 +47,7 @@ However, a real objective of this work is to document (and reflect upon) the app
 
 
 <p align="center">
-  <img src="https://github.com/digsci/datalabs/blob/master/architecture.png" width="400" height="629">
+  <img src="https://github.com/digsci/datalabs/blob/master/architecture.png" width="400" height="346">
 </p>
 
 1. **Virtual Network:** Used for container networking and for simple dns lookup.<br>
