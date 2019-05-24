@@ -1,25 +1,30 @@
 version: '3'
 services:
   jupyter-notebook:
+    name: "datalab-notebook"
     build: ./jupyter_notebook
     image: "graham/jupyter_notebook:1.0"
     ports:
       - "8888:8888"
   data-routing:
+    name: "data-routing"
     build: ./data_routing/
     image: "graham/data_routing:1.0"
     depends_on:
         - "mosquitto"
         - "mongo-db"
   mongo-db:
+    name: "mongo-db"
     image: "mongo"
     ports:
         - "27017:27017"
   postgres-db:
+    name: "postgres-db"
     environment: 
       - POSTGRES_PASSWORD=postgres
     image: "postgres"
   mosquitto:
+    name: "mosquitto"
     image: "eclipse-mosquitto"
     ports:
         - "1883:1883"
