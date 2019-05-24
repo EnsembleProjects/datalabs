@@ -125,8 +125,8 @@ A production-ready k8s cluster would be created using any of the various vendor'
 
 Using the K8s system, we can take a declarative approach describing what we would like our system to look like using configuration files that we submit to K8s. There are many different component types in k8s, but initially only *deployment* and *service* are used:
   
-1. **[Deployment](https://www.docker.com/products/docker-desktop):** Describe desired state for an application (e.g. number of replicated service containers) and update strategies.  
-2. **[Service:](https://kubernetes.io/docs/concepts/services-networking/service/)** Provide stable, resilient networking and ip addresses for service containers.  
+1. **[Deployment](https://www.docker.com/products/docker-desktop):** Describe desired state for an application (e.g. number of replicated microservice containers) and update strategies.  
+2. **[Service:](https://kubernetes.io/docs/concepts/services-networking/service/)** Provide stable, resilient networking and ip addresses for microservice containers.  
 
 Example Jupyter Notebook deployment file:  
   
@@ -154,8 +154,10 @@ spec:
             containers:
                 - name: jupyter-notebook
                   image: graham/jupyter_notebook:1.0
+                  securityContext:
+                    runAsUser: 0
                   ports:
-                      - containerPort: 8888
+                      - containerPort: 8000
 ~~~~
 
 Example Jupyter Notebook service file:  
@@ -170,7 +172,7 @@ metadata:
 spec:
     type: NodePort
     ports:
-        - port: 8888
+        - port: 8000
           nodePort: 30001
           protocol: TCP
     selector:

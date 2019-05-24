@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
     name: jupyter-notebook-deploy
 spec:
-    replicas: 3
+    replicas: 1
     selector:
         matchLabels:
             app: jupyter-notebook
@@ -21,6 +21,8 @@ spec:
             containers:
                 - name: jupyter-notebook
                   image: graham/jupyter_notebook:1.0
+                  securityContext:
+                    runAsUser: 0
                   ports:
-                      - containerPort: 8888
+                      - containerPort: 8000
 
