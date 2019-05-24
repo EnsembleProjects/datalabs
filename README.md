@@ -17,9 +17,8 @@ The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) define cloud
 A cloud-native application is an application that is structured, developed and deployed in such a way that it embodies these characteristics using appropriate technologies and practices.
 
 ##### An example technology stack for cloud-native applications
-<p align="center">
-  <img src="https://github.com/digsci/datalabs/blob/master/stack.png" width="400" height="629">
-</p>
+
+![Cloud-Native Technology Stack](./doc/img/stack.png)
 
 #### What is a DataLab?
 
@@ -42,12 +41,10 @@ techniques. As it develops, this will become more precise over time.
 
 However, a real objective of this work is to document (and reflect upon) the approach used to move from a traditional software architecture to a cloud-native architecture.
 
-#### Microservice Architecture of a (Container-Based) Wireless Sensor DataLab
-
-
-<p align="center">
-  <img src="https://github.com/digsci/datalabs/blob/master/architecture.png" width="600" height="519">
-</p>
+#### Microservice Architecture of a (Container-Based) Wireless Sensor DataLab  
+  
+  
+![Microservice Architecture](./doc/img/architecture.png)
 
 1. **Virtual Network:** Used for container networking and for simple dns lookup.<br>
 `docker network create -d bridge bridge_network`
