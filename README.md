@@ -14,9 +14,26 @@ The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) define cloud
 
 *“Cloud native” is a term used to describe applications designed specifically to run on a cloud-based infrastructure. Typically, cloud-native applications are developed as loosely coupled microservices running in containers managed by platforms. These applications anticipate failure, and they run and scale reliably even when their underlying infrastructure is experiencing outages. To offer such capabilities, cloud-native platforms impose a set of contracts and constraints on the applications running on them. These contracts ensure that the applications conform to certain constraints and allow the platforms to automate the management of the containerized applications.*
 
+In [Cloud Native Paterns](https://www.manning.com/books/cloud-native-patterns), Cornelia Davis defines cloud-native as:
+
+*Cloud-native software is highly distributed, must operate in a constantly changing environment and is itself constantly changing.*
+
+She identifies three key characteristics of cloud-native software:  
+  
+* *Cloud-Native Apps:* Implement behaviours that allow it to operate in service relationships and support cloud-native operational practices such as scaling and updating;
+* *Cloud-Native Data:* Cloud-native software typically uses a microservices architecture and traditional centralised databases are similarly decomposed and distributed;
+* *Cloud-Native Interactions:* Due to the replicated and distributed nature of cloud-native software requires routing of requests, automated request retries (with in-built circuit-breakers) and observability of logging across the whole distributed application. 
+
+
 A cloud-native application is an application that is structured, developed and deployed in such a way that it embodies these characteristics using appropriate technologies and practices.
 
-##### An example technology stack for cloud-native applications
+The cloud-native technology landscape is an emerging and growing area. The Cloud Native Computing Foundation have put together a map of this landscape:
+
+![CNCF Cloud Native Landscape](https://landscape.cncf.io/images/landscape.png)
+
+This clearly can be overwhelming, so here we will use a very simple technology stack that will be sufficient for our needs and can be augmented as new requirements arise.
+
+##### A simple technology stack for cloud-native applications:
 
 ![Cloud-Native Technology Stack](./doc/img/stack.png)
 
