@@ -1,4 +1,4 @@
-### Developing a *Cloud-Native* Wireless Soil Sensor DataLab
+### Developing a *Cloud-Native* DataLab
 
 #### What is a cloud-native application?
 
@@ -43,16 +43,15 @@ A DataLab brings together data, analytical techniques and computational resource
 cover a wide range of possibilities, e.g. exploratory investigations of datasets, learning about innovative statistical techniques, developing an 
 understanding of particular application areas, or integrating different modelling approaches.
 
-The basic premise here is to start with the idea of a (very) simple Soil Sensor DataLab built as a containerised application and then developed for production as a cloud-native application.
+The basic premise here is to start with the idea of a (very) simple generic DataLab built as a containerised application and then developed for production as a cloud-native application.
 
 It is hoped that as well as documenting the steps taken I can also reflect on the pros and cons of various decisions en-route.
 
-#### A Digital Twin DataLab
+#### A Generic DataLab
 
-A [Digital Twin](https://en.wikipedia.org/wiki/Digital_twin) DataLab has been chosen because it raises some interesting architectural questions for the system due to the digital twin data layer.   
+A [Digital Twin](https://en.wikipedia.org/wiki/Digital_twin) DataLab has been chosen because it raises some interesting architectural questions for the system due to the digital twin data integration layer.   
 
-So, what is the purpose of this Digital Twin Datalab? I think just to explore the characteristics of the streaming sensor data using a variety of
-techniques. As it develops, this will become more precise over time. 
+So, what is the purpose of this Digital Twin Datalab? I think just to explore the characteristics of modelled data, historical observations, streaming sensor data and simulation using a variety of techniques. The idea is to describe a generic DataLAb from an architectural perspective that would then be specialised for a specific application domain.
 
 However, a real objective of this work is to document (and reflect upon) the approach used to move from a traditional software architecture to a cloud-native architecture.
 
