@@ -55,7 +55,7 @@ So, what is the purpose of this Digital Twin Datalab? I think just to explore th
 
 However, a real objective of this work is to document (and reflect upon) the approach used to move from a traditional software architecture to a cloud-native architecture.
 
-#### Microservice Architecture of a (Container-Based) Wireless Sensor DataLab  
+#### Microservice Architecture of a (Container-Based) DataLab  
   
   
 ![Microservice Architecture](./doc/img/architecture.png)
