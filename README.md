@@ -33,7 +33,7 @@ The cloud-native technology landscape is an emerging and growing area. The Cloud
 
 This clearly can be overwhelming, so here we will use a very simple technology stack that will be sufficient for our needs and can be augmented as new requirements arise.
 
-##### A simple technology stack for cloud-native applications:
+##### A simple technology stack for developing and delivering cloud-native applications:
 
 ![Cloud-Native Technology Stack](./doc/img/stack.png)
 
