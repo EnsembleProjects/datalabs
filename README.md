@@ -97,9 +97,14 @@ docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=post
 
 ~~~~
 Dockerfile: 
-FROM jupyter/scipy-notebook:latest 
+FROM jupyter/scipy-notebook:latest
+USER root
+RUN useradd -ms /bin/bash datalabs
+USER jovyan
 ADD db.ipynb /home/jovyan
-RUN conda install -y pymongo psycopg2 
+ADD jupyterhub_config.py /home/jovyan/
+RUN conda install -y pymongo psycopg2
+ENTRYPOINT jupyterhub -f jupyterhub_config.py
   
 docker build -t jupyter_notebook .    
 docker run --name jupyter_notebook --network=bridge_network -p 8888:8888 jupyter_notebook
