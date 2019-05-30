@@ -31,9 +31,9 @@ The cloud-native technology landscape is an emerging and growing area. The Cloud
 
 ![CNCF Cloud Native Landscape](https://landscape.cncf.io/images/landscape.png)
 
-This clearly can be overwhelming, so here we will use a very simple technology stack that will be sufficient for our needs and can be augmented as new requirements arise.
+This clearly can be overwhelming, so here we will use a very simple technology stack for our infrastructure that will be sufficient for our needs and can be augmented as new requirements arise.
 
-##### A simple technology stack for developing and delivering cloud-native applications:
+##### A simple infrastructure stack for developing and delivering cloud-native applications:
 
 ![Cloud-Native Technology Stack](./doc/img/stack.png)
 
@@ -97,7 +97,7 @@ docker run --network=bridge_network --name postgres_db -e POSTGRES_PASSWORD=post
 
 ~~~~
 Dockerfile: 
-FROM jupyter/scipy-notebook:latest
+	FROM jupyter/scipy-notebook:latest
 USER root
 RUN useradd -ms /bin/bash datalabs
 USER jovyan
