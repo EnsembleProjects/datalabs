@@ -482,6 +482,7 @@ c.JupyterHub.pid_file = '/opt/conda/share/jupyterhub/jupyterhub-proxy.pid'
 
 ## Paths to search for jinja templates, before using the default templates.
 #c.JupyterHub.template_paths = []
+c.JupyterHub.template_paths = ['/opt/conda/share/jupyterhub/custom-templates/']
 
 ## Extra variables to be passed into jinja templates
 #c.JupyterHub.template_vars = {}
