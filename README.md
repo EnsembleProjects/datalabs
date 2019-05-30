@@ -131,6 +131,21 @@ The Jupyter Notebook can be found at `localhost:8888` and the username is 'datal
 To close the system gracefully use:  
 `docker-compose down`
 
+#### Multi-User DataLabs
+
+Now that we have a basic application in place we can begin to extend its capabilities. A major feature of a DataLab is that it should support multiple users and provide services such as user authentication and storage. Rather than build this application from scratch we will start with the [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/) project and extend it as needed. In actual fact, JupyterHub is installed when Jupyter is installed and we were actually using it in the deployment described above.  
+
+The basic architecture of JupyterHub is shown below: 
+ 
+![JupyterHub Architecture](./doc/img/jhub-fluxogram.jpg)
+
+We can see that we already have a software architecture that is amenable to be containerised and extended in different ways. The key features it already provides for our purposes are:  
+
+* *Authentication:* Provides various authentication services including [PAM](https://linux.die.net/man/8/pam.d), [OAuth](https://oauth.net) and [LDAP](https://ldap.com);
+* *Administration:* Administration services for users and new users;
+* *Spawner:* Starts individual user notebook servers with support for process, container and remote based invocation.
+ 
+
 #### Cloud-Native Approach 
 
 The container-based application already has some benefits arising from its loosely-coupled microservices architecture (.e.g. ability to have polyglot development approaches, updating of individual services) but it doesn't in itself provide a resilient and scalable application.
