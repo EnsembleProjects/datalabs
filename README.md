@@ -117,14 +117,11 @@ If you want to run the container-based system, ensure you have docker installed 
 
 ~~~~
 git clone https://github.com/digsci/datalabs.git 
-cd datalabs/container-based/data_routing  
-docker build -t graham/data_routing:1.0 .
-cd datalabs/container-based/jupter_notebook
-docker build -t graham/jupyter_notebook:1.0 .
 cd datalabs/container-based
+docker-compose build
 docker-compose up
 ~~~~  
-The Jupyter Notebook can be found at `localhost:8888`
+The Jupyter Notebook can be found at `localhost:8888` and the username is 'datalabs' with any password.
 
 To close the system gracefully use:  
 `docker-compose down`
